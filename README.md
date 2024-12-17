@@ -79,7 +79,7 @@ My deployed link: https://securinserver.onrender.com/
 #### Get CVE based on `id`
 
 ```http
-  GET /api/items/:id
+  GET /api/cve/:id
 ```
 
 | Parameter | Type     | Description                      |
