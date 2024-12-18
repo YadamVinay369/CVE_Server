@@ -143,8 +143,11 @@ My deployed link: https://securinserver.onrender.com/
 
 - Tests are located in the `__tests__` folder, including:
 
-- Unit tests for `cveController` logic.
-- Example: `__tests__/cveController.test.js`
+- Unit tests for `getCVEController` logic is present in `__tests__\cveRoutes.test.js`.
+- Unit tests for `getCVEControllerByID` logic is present in `__tests__\getCVEControllerByID.test.js`.
+- Unit tests for `getCVEControllerByYear` logic is present in `__tests__\getCVEControllerByYear.test.js`.
+- Unit tests for `getCVEControllerByScore` logic is present in `__tests__\getCVEControllerByScore.test.js`.
+- Unit tests for `getCVEControllerByRange` logic is present in `__tests__\getCVEControllerByRange.test.js`.
 
 ## Dependencies
 
@@ -153,3 +156,4 @@ My deployed link: https://securinserver.onrender.com/
 - dotenv: Load environment variables.
 - axios: For external API requests.
 - jest: JavaScript testing framework for unit testing.
+- supertest: For testing HTTP requests.
