@@ -51,7 +51,7 @@ const getCVEControllerByYear = async (req, res) => {
         $lt: new Date(`${Number(year) + 1}-01-01`),
       },
     });
-    if (!cves)
+    if (!cves || cves.length === 0)
       return res
         .status(404)
         .json({ message: `No such cve is available with year: ${year}` });
@@ -66,11 +66,11 @@ const getCVEControllerByScore = async (req, res) => {
     const score = parseFloat(req.params.score);
     const cves = await CVE.find({
       $or: [
-        { "metrics.cvssMetricV2.cvssData.baseScore": { $gte: score } },
-        { "metrics.cvssMetricV3.cvssData.baseScore": { $gte: score } },
+        { "metrics.cvssMetricV2.cvssData.baseScore": { $eq: score } },
+        { "metrics.cvssMetricV3.cvssData.baseScore": { $eq: score } },
       ],
     });
-    if (!cves)
+    if (!cves || cves.length === 0)
       return res
         .status(404)
         .json({ message: `No such cve is available with score: ${score}` });
@@ -87,11 +87,11 @@ const getCVEControllerByRange = async (req, res) => {
     dateLimit.setDate(dateLimit.getDate() - days);
 
     const cves = await CVE.find({ lastModified: { $gte: dateLimit } });
-    if (!cves)
+    if (!cves || cves.length === 0)
       return res
         .status(404)
-        .json({ message: `No such cve is available with given range` });
-    res.json(cves);
+        .json({ message: "No such cve is available with given range" });
+    res.status(200).json(cves);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
