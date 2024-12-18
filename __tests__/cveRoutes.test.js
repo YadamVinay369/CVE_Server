@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const CVE = require("../models/CVE"); // Import your Mongoose model
+const CVE = require("../models/CVE");
 const request = require("supertest");
-const app = require("../server"); // Import your Express server
+const app = require("../server");
 
 // Mock CVE data
 const mockCVE = {
