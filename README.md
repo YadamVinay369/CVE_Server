@@ -63,7 +63,7 @@ My deployed link: https://securinserver.onrender.com/
 
 ## API Reference
 
-#### Get all items
+#### Get all CVEs
 
 ```http
   GET /api/cve
@@ -71,7 +71,7 @@ My deployed link: https://securinserver.onrender.com/
 
 ![Screenshot of getCVE postman ](./screenshots/getCVE.png)
 
-#### Get all items with page and limit
+#### Get all CVEs with page and limit
 
 ```http
   GET /api/cve?page=1&limit=10
@@ -91,7 +91,7 @@ My deployed link: https://securinserver.onrender.com/
 
 ![Screenshot of getCVEbyID postman ](./screenshots/getCVEbyID.png)
 
-#### Get item based on published `year`
+#### Get CVE based on published `year`
 
 ```http
   GET /api/cve/year/:year
@@ -103,7 +103,7 @@ My deployed link: https://securinserver.onrender.com/
 
 ![Screenshot of getCVEbyYear postman ](./screenshots/getCVEbyYear.png)
 
-#### Get item based on `baseScore`
+#### Get CVE based on `baseScore`
 
 ```http
   GET /api/cve/score/:score
@@ -115,7 +115,7 @@ My deployed link: https://securinserver.onrender.com/
 
 ![Screenshot of getCVEbyBaseScore postman ](./screenshots/getCVEbyBaseScore.png)
 
-#### Get item based on `range`
+#### Get CVE based on `range`
 
 ```http
   GET /api/cve/lastModified/:range
