@@ -1,5 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
+const cron = require("node-cron");
 
 const express = require("express");
 const connectDB = require("./config/db");
@@ -11,8 +12,16 @@ connectDB();
 const app = express();
 app.use(cors());
 
-//Uncomment only if we want to fetch data
-//fetchCVEData();
+// Schedule the synchronization task
+cron.schedule("0 2 * * *", async () => {
+  console.log("Starting CVE synchronization at 2:00 PM...");
+  try {
+    await fetchCVEData();
+    console.log("CVE synchronization completed successfully.");
+  } catch (error) {
+    console.error("CVE synchronization failed:", error.message);
+  }
+});
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
