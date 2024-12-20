@@ -2,8 +2,10 @@
 
 This is the backend for the Securin CVE Dashboard, built with Node.js and Express.js. It provides APIs to fetch, store, and manage CVE (Common Vulnerabilities and Exposures) data.
 
-I have used this API link: https://services.nvd.nist.gov/rest/json/cves/2.0
-to fetch the CVE data in chunks of around 2000 records per request and stored it into monogoDB(mongoose) database.
+- Used this API link: https://services.nvd.nist.gov/rest/json/cves/2.0
+- Fetched the CVE data in chunks of around 2000 records per request synchronously
+- API request is being hit 3 times per each chunk to establish proper connection
+- stored the data using bulkWrite into monogoDB(mongoose) database.
 
 My deployed link: https://securinserver.onrender.com/
 
@@ -11,7 +13,9 @@ My deployed link: https://securinserver.onrender.com/
 
 - RESTful APIs to fetch CVE data.
 - Pagination support for large datasets.
+- Filter data based on parameters
 - Customizable results per page.
+- Data Synchronization using node-cron
 - Data storage using MongoDB.
 - Environment variable support for secure configurations
 
@@ -127,6 +131,14 @@ My deployed link: https://securinserver.onrender.com/
 
 ![Screenshot of getCVEbyBaseScore postman ](./screenshots/getCVEbyRange.png)
 
+#### filter CVEs by passing queries in the API
+
+```http
+  GET /api/cve?page=1&limit=3&score=10&year=1988&days=65
+```
+
+![Screenshot of getCVEbyPageAndLimit postman ](./screenshots/filterCVE.png)
+
 ## Running Tests
 
 - Install Jest (if not already installed):
@@ -143,11 +155,7 @@ My deployed link: https://securinserver.onrender.com/
 
 - Tests are located in the `__tests__` folder, including:
 
-- Unit tests for `getCVEController` logic is present in `__tests__\cveRoutes.test.js`.
 - Unit tests for `getCVEControllerByID` logic is present in `__tests__\getCVEControllerByID.test.js`.
-- Unit tests for `getCVEControllerByYear` logic is present in `__tests__\getCVEControllerByYear.test.js`.
-- Unit tests for `getCVEControllerByScore` logic is present in `__tests__\getCVEControllerByScore.test.js`.
-- Unit tests for `getCVEControllerByRange` logic is present in `__tests__\getCVEControllerByRange.test.js`.
 
 ## Dependencies
 
@@ -157,3 +165,4 @@ My deployed link: https://securinserver.onrender.com/
 - axios: For external API requests.
 - jest: JavaScript testing framework for unit testing.
 - supertest: For testing HTTP requests.
+- node-cron: For time-scheduling and auto-update in the database
