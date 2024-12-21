@@ -155,7 +155,13 @@ My deployed link: https://securinserver.onrender.com/
 
 - Tests are located in the `__tests__` folder, including:
 
+- Unit tests for `getCVEController` logic is present in `__tests__\getCVEController.test.js`.
 - Unit tests for `getCVEControllerByID` logic is present in `__tests__\getCVEControllerByID.test.js`.
+- Unit tests for `getCVEControllerByYear` logic is present in `__tests__\getCVEControllerByYear.test.js`.
+- Unit tests for `getCVEControllerByScore` logic is present in `__tests__\getCVEControllerByScore.test.js`.
+- Unit tests for `getCVEControllerByRange` logic is present in `__tests__\getCVEControllerByRange.test.js`.
+
+![Screenshot of unit tests ](./screenshots/unitTests.png)
 
 ## Dependencies
 
