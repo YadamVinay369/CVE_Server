@@ -110,7 +110,7 @@ const getCVEControllerByScore = async (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
 
-    const score = parseFloat(req.query.score);
+    const score = parseFloat(req.params.score);
     const cves = await CVE.find({
       $or: [
         { "metrics.cvssMetricV2.cvssData.baseScore": { $eq: score } },
