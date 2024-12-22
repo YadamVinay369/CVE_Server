@@ -16,8 +16,8 @@ My deployed link: https://securinserver.onrender.com/
 - Pagination support for large datasets.
 - Filter data based on parameters
 - Customizable results per page.
-- Data Synchronization using node-cron
-- Data storage using MongoDB.
+- Auto-Update of records daily at 02:00 AM using node-cron
+- Data storage using MongoDB(mongoose).
 - Environment variable support for secure configurations
 
 ## Tech Stack
@@ -25,7 +25,7 @@ My deployed link: https://securinserver.onrender.com/
 - Node.js - JavaScript runtime.
 - Express.js - Web framework for Node.js.
 - MongoDB - NoSQL database.
-- Mongoose - ODM for MongoDB.
+- Mongoose - online version of MongoDB.
 - dotenv - Environment variable management.
 - Jest - JavaScript testing framework.
 
@@ -49,7 +49,6 @@ My deployed link: https://securinserver.onrender.com/
 ```bash
  PORT=8000
  MONGODB_URI=your_mongodb_connection_string
- CVE_API_URL=https://api.example.com/cve
 ```
 
 - Run the server
