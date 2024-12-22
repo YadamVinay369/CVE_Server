@@ -14,7 +14,7 @@ app.use(cors());
 
 // Schedule the synchronization task
 cron.schedule("0 2 * * *", async () => {
-  console.log("Starting CVE synchronization at 2:00 PM...");
+  console.log("Starting CVE synchronization at 2:00 AM...");
   try {
     await fetchCVEData();
     console.log("CVE synchronization completed successfully.");
