@@ -5,6 +5,7 @@ This is the backend for the Securin CVE Dashboard, built with Node.js and Expres
 - Used this API link: https://services.nvd.nist.gov/rest/json/cves/2.0
 - Fetched the CVE data in chunks of around 2000 records per request synchronously
 - API request is being hit 3 times per each chunk to establish proper connection
+- fetching and auto-update of records will be scheduled automatically daily at 02:00 AM(customizable)
 - stored the data using bulkWrite into monogoDB(mongoose) database.
 
 My deployed link: https://securinserver.onrender.com/
