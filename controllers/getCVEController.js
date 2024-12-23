@@ -11,7 +11,7 @@ const getCVEController = async (req, res) => {
     if (req.query.year) {
       filter.published = {
         $gte: new Date(`${req.query.year}-01-01`),
-        $lt: new Date(`${parseInt(req.query.year) + 1}-01-01`),
+        $lt: new Date(`${req.query.year}-12-31T23:59:59.999Z`),
       };
     }
 
@@ -73,7 +73,7 @@ const getCVEControllerByYear = async (req, res) => {
     const cves = await CVE.find({
       published: {
         $gte: new Date(`${year}-01-01`),
-        $lt: new Date(`${Number(year) + 1}-01-01`),
+        $lt: new Date(`${req.query.year}-12-31T23:59:59.999Z`),
       },
     })
       .skip(skip)
@@ -86,7 +86,7 @@ const getCVEControllerByYear = async (req, res) => {
     const totalCount = await CVE.find({
       published: {
         $gte: new Date(`${year}-01-01`),
-        $lt: new Date(`${Number(year) + 1}-01-01`),
+        $lt: new Date(`${req.query.year}-12-31T23:59:59.999Z`),
       },
     }).countDocuments();
 
