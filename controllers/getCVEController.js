@@ -30,7 +30,14 @@ const getCVEController = async (req, res) => {
       filter.lastModified = { $gte: dateLimit };
     }
 
-    const cves = await CVE.find(filter).skip(skip).limit(limit);
+    const sortField = req.query.sortField || "published"; // Default sort field
+    const sortOrder = req.query.sortOrder === "desc" ? -1 : 1; // Default ascending
+
+    const cves = await CVE.find(filter)
+      .sort({ [sortField]: sortOrder })
+      .skip(skip)
+      .limit(limit);
+
     const totalCount = await CVE.countDocuments(filter);
 
     if (!cves || cves.length === 0) {
