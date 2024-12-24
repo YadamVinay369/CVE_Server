@@ -40,34 +40,48 @@ const fetchCVEData = async () => {
         break;
       }
 
-      const bulkOps = vulnerabilities.map((item) => {
-        const cve = item.cve;
-        return {
-          updateOne: {
-            filter: { cveId: cve.id },
-            update: {
-              cveId: cve.id,
-              sourceIdentifier: cve.sourceIdentifier,
-              published: cve.published,
-              lastModified: cve.lastModified,
-              vulnStatus: cve.vulnStatus,
-              descriptions: cve.descriptions[0]?.value || "",
-              metrics: cve.metrics || {},
-              configurations: cve.configurations || {},
-            },
-            upsert: true,
-          },
-        };
-      });
+      const bulkOps = vulnerabilities
+        .map((item) => {
+          const cve = item.cve;
+          if (
+            cve &&
+            cve.metrics &&
+            cve.configurations &&
+            Object.keys(cve.metrics).length > 0 &&
+            Object.keys(cve.configurations).length > 0
+          ) {
+            return {
+              updateOne: {
+                filter: { cveId: cve.id },
+                update: {
+                  cveId: cve.id,
+                  sourceIdentifier: cve.sourceIdentifier,
+                  published: cve.published,
+                  lastModified: cve.lastModified,
+                  vulnStatus: cve.vulnStatus,
+                  descriptions: cve.descriptions[0]?.value || "",
+                  metrics: cve.metrics || {},
+                  configurations: cve.configurations || {},
+                },
+                upsert: true,
+              },
+            };
+          }
+          return null;
+        })
+        .filter((op) => op !== null);
 
-      await CVE.bulkWrite(bulkOps);
-      console.log(
-        `Fetched and stored ${vulnerabilities.length} CVEs (up to index ${
-          startIndex + RESULTS_PER_PAGE
-        }).`
-      );
-
-      startIndex += RESULTS_PER_PAGE;
+      if (bulkOps.length > 0) {
+        await CVE.bulkWrite(bulkOps);
+        console.log(
+          `Fetched and stored ${vulnerabilities.length} CVEs (up to index ${
+            startIndex + RESULTS_PER_PAGE
+          }).`
+        );
+        startIndex += RESULTS_PER_PAGE;
+      } else {
+        console.log("No new CVEs to store.");
+      }
     }
   } catch (error) {
     console.error("Error during CVE data synchronization:", error.message);
