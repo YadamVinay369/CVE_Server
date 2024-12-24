@@ -15,6 +15,7 @@ My deployed link: https://securinserver.onrender.com/
 - RESTful APIs to fetch CVE data.
 - Pagination support for large datasets.
 - Filter data based on parameters
+- Get sorted data based on published year or lastModified year
 - Customizable results per page.
 - Auto-Update of records daily at 02:00 AM using node-cron
 - Data storage using MongoDB(mongoose).
