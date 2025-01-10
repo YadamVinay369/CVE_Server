@@ -1,14 +1,14 @@
-# Securin CVE server
+# CVE server
 
-This is the backend for the Securin CVE Dashboard, built with Node.js and Express.js. It provides APIs to fetch, store, and manage CVE (Common Vulnerabilities and Exposures) data.
+This project mainly aims to utilize the CVE data available in National Vulnerability Database, perform data cleansing,data de-duplication and store it in database and perform daily update.Provides APIs to fetch, store, and manage CVE (Common Vulnerabilities and Exposures) data.
 
-- Used this API link: https://services.nvd.nist.gov/rest/json/cves/2.0
+- API link used: https://services.nvd.nist.gov/rest/json/cves/2.0
 - Fetched the CVE data in chunks of around 2000 records per request synchronously
 - API request is being hit 3 times per each chunk to establish proper connection
 - fetching and auto-update of records will be scheduled automatically daily at 02:00 AM(customizable)
 - stored the data using bulkWrite into monogoDB(mongoose) database.
 
-My deployed link: https://securinserver.onrender.com/
+Deployed link: https://securinserver.onrender.com/
 
 ## Salient Features
 

@@ -1,5 +1,4 @@
 const express = require("express");
-const CVE = require("../models/CVE");
 const router = express.Router();
 
 // import controllers
