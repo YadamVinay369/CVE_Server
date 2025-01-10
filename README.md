@@ -1,6 +1,6 @@
 # CVE server
 
-This project mainly aims to utilize the CVE data available in National Vulnerability Database, perform data cleansing,data de-duplication and store it in database and perform daily update.Provides APIs to fetch, store, and manage CVE (Common Vulnerabilities and Exposures) data.
+This project mainly aims to utilize the CVE data available in National Vulnerability Database, perform data cleansing,data de-duplication and store it in mongoose database and perform daily updates.Provides APIs to fetch, store, and manage CVE (Common Vulnerabilities and Exposures) data.
 
 - API link used: https://services.nvd.nist.gov/rest/json/cves/2.0
 - Fetched the CVE data in chunks of around 2000 records per request synchronously
